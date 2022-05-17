@@ -24,9 +24,9 @@ booking1 = Booking.create(user: david, workshop: dota2_workshop)
 booking2 = Booking.create(user: david, workshop: league_workshop)
 booking3 = Booking.create(user: david, workshop: dota2_workshop)
 
-morning_timeslot = Timeslot.create(day: "2022/05/22", start_time: "07:00:00", end_time: "09:00:00", price: 100, total_seats: 30, available_seats: 30)
-afternoon_timeslot = Timeslot.create(day: "2022/05/22", start_time: "12:00:00", end_time: "14:00:00", price: 50, total_seats: 10, available_seats: 10)
-late_timeslot = Timeslot.create(day: "2022/05/22", start_time: "20:00:00", end_time: "22:00:00", price: 200, total_seats: 10, available_seats: 10)
+morning_timeslot = Timeslot.create(workshop: dota2_workshop, day: "2022/05/22", start_time: "07:00:00", end_time: "09:00:00", price: 100, total_seats: 30, available_seats: 30)
+afternoon_timeslot = Timeslot.create(workshop: dota2_workshop,day: "2022/05/22", start_time: "12:00:00", end_time: "14:00:00", price: 50, total_seats: 10, available_seats: 10)
+late_timeslot = Timeslot.create(workshop: dota2_workshop,day: "2022/05/22", start_time: "20:00:00", end_time: "22:00:00", price: 200, total_seats: 10, available_seats: 10)
 
 puts "Users: #{User.count}"
 puts "Workshops: #{Workshop.count}"
