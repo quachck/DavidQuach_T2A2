@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @workshop %>
+
+<div>
+  <%= link_to "Edit this workshop", edit_workshop_path(@workshop) %> |
+  <%= link_to "Back to workshops", workshops_path %>
+
+  <%= button_to "Destroy this workshop", @workshop, method: :delete %>
+</div>
