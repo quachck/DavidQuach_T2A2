@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :timeslots
+  resources :workshops do
+    resources :timeslots
+  end
   resources :bookings
-  resources :workshops
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

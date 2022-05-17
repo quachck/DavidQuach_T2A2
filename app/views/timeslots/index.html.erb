@@ -6,9 +6,9 @@
   <% @timeslots.each do |timeslot| %>
     <%= render timeslot %>
     <p>
-      <%= link_to "Show this timeslot", timeslot %>
+      <%= link_to "Show this timeslot", workshop_timeslot_path(@workshop.id, timeslot.id) %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New timeslot", new_timeslot_path %>
+<%= link_to "New timeslot", new_workshop_timeslot_path %>

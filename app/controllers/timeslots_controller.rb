@@ -4,6 +4,7 @@ class TimeslotsController < ApplicationController
   # GET /timeslots or /timeslots.json
   def index
     @timeslots = Timeslot.all
+    @workshop = Workshop.find(params[:workshop_id])
   end
 
   # GET /timeslots/1 or /timeslots/1.json
@@ -13,6 +14,7 @@ class TimeslotsController < ApplicationController
   # GET /timeslots/new
   def new
     @timeslot = Timeslot.new
+    @workshop = Workshop.find(params[:workshop_id])
   end
 
   # GET /timeslots/1/edit
@@ -22,10 +24,11 @@ class TimeslotsController < ApplicationController
   # POST /timeslots or /timeslots.json
   def create
     @timeslot = Timeslot.new(timeslot_params)
+    @workshop = Workshop.find(params[:workshop_id])
 
     respond_to do |format|
       if @timeslot.save
-        format.html { redirect_to timeslot_url(@timeslot), notice: "Timeslot was successfully created." }
+        format.html { redirect_to workshop_timeslot_path(@workshop.id, @timeslot.id), notice: "Timeslot was successfully created." }
         format.json { render :show, status: :created, location: @timeslot }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -52,7 +55,7 @@ class TimeslotsController < ApplicationController
     @timeslot.destroy
 
     respond_to do |format|
-      format.html { redirect_to timeslots_url, notice: "Timeslot was successfully destroyed." }
+      format.html { redirect_to workshop_timeslots_url, notice: "Timeslot was successfully destroyed." }
       format.json { head :no_content }
     end
   end

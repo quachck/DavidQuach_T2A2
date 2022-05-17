@@ -1,10 +1,10 @@
-<%= form_with(model: timeslot) do |form| %>
-  <% if timeslot.errors.any? %>
+<%= form_for([@workshop, @timeslot]) do |form| %>
+  <% if @timeslot.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(timeslot.errors.count, "error") %> prohibited this timeslot from being saved:</h2>
+      <h2><%= pluralize(@timeslot.errors.count, "error") %> prohibited this timeslot from being saved:</h2>
 
       <ul>
-        <% timeslot.errors.each do |error| %>
+        <% @timeslot.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
