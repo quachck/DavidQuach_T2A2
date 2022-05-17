@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :timeslots
   resources :bookings
   resources :workshops
   devise_for :users
