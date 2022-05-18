@@ -17,7 +17,7 @@ class TimeslotsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create timeslot" do
     assert_difference("Timeslot.count") do
-      post timeslots_url, params: { timeslot: { available_seats: @timeslot.available_seats, day: @timeslot.day, end_time: @timeslot.end_time, price: @timeslot.price, start_time: @timeslot.start_time, total_seats: @timeslot.total_seats, workshop_id: @timeslot.workshop_id } }
+      post timeslots_url, params: { timeslot: { available_tickets: @timeslot.available_tickets, day: @timeslot.day, end_time: @timeslot.end_time, price: @timeslot.price, start_time: @timeslot.start_time, total_tickets: @timeslot.total_tickets, workshop_id: @timeslot.workshop_id } }
     end
 
     assert_redirected_to timeslot_url(Timeslot.last)
@@ -34,7 +34,7 @@ class TimeslotsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update timeslot" do
-    patch timeslot_url(@timeslot), params: { timeslot: { available_seats: @timeslot.available_seats, day: @timeslot.day, end_time: @timeslot.end_time, price: @timeslot.price, start_time: @timeslot.start_time, total_seats: @timeslot.total_seats, workshop_id: @timeslot.workshop_id } }
+    patch timeslot_url(@timeslot), params: { timeslot: { available_tickets: @timeslot.available_tickets, day: @timeslot.day, end_time: @timeslot.end_time, price: @timeslot.price, start_time: @timeslot.start_time, total_tickets: @timeslot.total_tickets, workshop_id: @timeslot.workshop_id } }
     assert_redirected_to timeslot_url(@timeslot)
   end
 

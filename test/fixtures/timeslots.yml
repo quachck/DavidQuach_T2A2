@@ -3,17 +3,17 @@
 one:
   workshop: one
   day: 2022-05-18
-  start_time: 2022-05-18 04:26:32
-  end_time: 2022-05-18 04:26:32
-  price: 1
-  total_seats: 1
-  available_seats: 1
+  start_time: 2022-05-18 18:28:09
+  end_time: 2022-05-18 18:28:09
+  price: 9.99
+  total_tickets: 1
+  available_tickets: 1
 
 two:
   workshop: two
   day: 2022-05-18
-  start_time: 2022-05-18 04:26:32
-  end_time: 2022-05-18 04:26:32
-  price: 1
-  total_seats: 1
-  available_seats: 1
+  start_time: 2022-05-18 18:28:09
+  end_time: 2022-05-18 18:28:09
+  price: 9.99
+  total_tickets: 1
+  available_tickets: 1

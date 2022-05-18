@@ -5,9 +5,9 @@ class CreateTimeslots < ActiveRecord::Migration[7.0]
       t.date :day
       t.time :start_time
       t.time :end_time
-      t.integer :price
-      t.integer :total_seats
-      t.integer :available_seats
+      t.decimal :price
+      t.integer :total_tickets
+      t.integer :available_tickets
 
       t.timestamps
     end

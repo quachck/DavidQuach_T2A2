@@ -25,10 +25,8 @@ class WorkshopsController < ApplicationController
 
     respond_to do |format|
       if @workshop.save
-        current_user.add_role :instructor, @workshop
-        @workshop.users << current_user
-        format.html { redirect_to new_workshop_timeslot_path(@workshop.id), notice: "Workshop was successfully created." }
-        format.json { render :new}
+        format.html { redirect_to workshop_url(@workshop), notice: "Workshop was successfully created." }
+        format.json { render :show, status: :created, location: @workshop }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @workshop.errors, status: :unprocessable_entity }
@@ -67,6 +65,6 @@ class WorkshopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def workshop_params
-      params.require(:workshop).permit(:title, :description, :img)
+      params.require(:workshop).permit(:user_id, :title, :description, :category, :skill_level, :location)
     end
 end

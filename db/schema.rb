@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_17_182632) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_18_082809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,15 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_17_182632) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "bookings", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "workshop_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_bookings_on_user_id"
-    t.index ["workshop_id"], name: "index_bookings_on_workshop_id"
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -66,9 +57,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_17_182632) do
     t.date "day"
     t.time "start_time"
     t.time "end_time"
-    t.integer "price"
-    t.integer "total_seats"
-    t.integer "available_seats"
+    t.decimal "price"
+    t.integer "total_tickets"
+    t.integer "available_tickets"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["workshop_id"], name: "index_timeslots_on_workshop_id"
@@ -95,15 +86,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_17_182632) do
   end
 
   create_table "workshops", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "title"
     t.text "description"
+    t.string "category"
+    t.string "skill_level"
+    t.text "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_workshops_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bookings", "users"
-  add_foreign_key "bookings", "workshops"
   add_foreign_key "timeslots", "workshops"
+  add_foreign_key "workshops", "users"
 end

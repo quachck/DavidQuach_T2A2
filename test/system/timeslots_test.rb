@@ -14,12 +14,12 @@ class TimeslotsTest < ApplicationSystemTestCase
     visit timeslots_url
     click_on "New timeslot"
 
-    fill_in "Available seats", with: @timeslot.available_seats
+    fill_in "Available tickets", with: @timeslot.available_tickets
     fill_in "Day", with: @timeslot.day
     fill_in "End time", with: @timeslot.end_time
     fill_in "Price", with: @timeslot.price
     fill_in "Start time", with: @timeslot.start_time
-    fill_in "Total seats", with: @timeslot.total_seats
+    fill_in "Total tickets", with: @timeslot.total_tickets
     fill_in "Workshop", with: @timeslot.workshop_id
     click_on "Create Timeslot"
 
@@ -31,12 +31,12 @@ class TimeslotsTest < ApplicationSystemTestCase
     visit timeslot_url(@timeslot)
     click_on "Edit this timeslot", match: :first
 
-    fill_in "Available seats", with: @timeslot.available_seats
+    fill_in "Available tickets", with: @timeslot.available_tickets
     fill_in "Day", with: @timeslot.day
     fill_in "End time", with: @timeslot.end_time
     fill_in "Price", with: @timeslot.price
     fill_in "Start time", with: @timeslot.start_time
-    fill_in "Total seats", with: @timeslot.total_seats
+    fill_in "Total tickets", with: @timeslot.total_tickets
     fill_in "Workshop", with: @timeslot.workshop_id
     click_on "Update Timeslot"
 

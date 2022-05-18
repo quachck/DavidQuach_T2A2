@@ -3,8 +3,8 @@
 <%= render @timeslot %>
 
 <div>
-  <%= link_to "Edit this timeslot", edit_workshop_timeslot_path(@timeslot.id) %> |
-  <%= link_to "Back to timeslots", workshop_timeslots_path %>
+  <%= link_to "Edit this timeslot", edit_timeslot_path(@timeslot) %> |
+  <%= link_to "Back to timeslots", timeslots_path %>
 
-  <%= button_to "Destroy this timeslot", workshop_timeslot_path, method: :delete %>
+  <%= button_to "Destroy this timeslot", @timeslot, method: :delete %>
 </div>
