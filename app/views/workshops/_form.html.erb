@@ -27,11 +27,6 @@
     <%= form.select :category, ['MOBA', 'FPS', 'MMORPG'], class: "form-control" %>
   </div>
 
-    <div class="mb-3">
-    <%= form.label :price, class:"form-label" %>
-    <%= form.text_field :price, class: "form-control" %>
-  </div>
-
   <div class="mb-3">
     <%= form.label :skill_level, class:"form-label" %>
     <%= form.select :skill_level, ['Beginner', 'Average', 'Expert'], class: "form-control" %>
@@ -43,6 +38,6 @@
   </div>
 
   <div class="mb-3">
-    <%= form.submit class:"btn btn-primary" %>
+    <%= form.submit "Save and proceed to add time slots", class:"btn btn-primary" %>
   </div>
 <% end %>

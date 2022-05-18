@@ -3,7 +3,7 @@ class WorkshopsController < ApplicationController
   # authenticate user
   before_action :authenticate_user!, except: %i[index show]
   # check user authorisation
-  before_action :check_auth, except: %i[new index]
+  before_action :check_auth, except: %i[new index create]
 
   # GET /workshops or /workshops.json
   def index
@@ -27,11 +27,12 @@ class WorkshopsController < ApplicationController
   def create
     @workshop = Workshop.new(workshop_params)
     @workshop.user_id = current_user.id
+    authorize(@workshop)
 
     respond_to do |format|
       if @workshop.save
-        format.html { redirect_to workshop_url(@workshop), notice: "Workshop was successfully created." }
-        format.json { render :show, status: :created, location: @workshop }
+        format.html { redirect_to new_timeslot_path(@workshop.id), notice: "Workshop was successfully created." }
+        format.json { render :new }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @workshop.errors, status: :unprocessable_entity }
