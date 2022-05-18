@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Timeslots</h1>
+
+<div id="timeslots">
+  <% @timeslots.each do |timeslot| %>
+    <%= render timeslot %>
+    <p>
+      <%= link_to "Show this timeslot", timeslot %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New timeslot", new_timeslot_path %>

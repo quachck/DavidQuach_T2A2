@@ -1,0 +1,48 @@
+<%= form_with(model: workshop) do |form| %>
+  <% if workshop.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2><%= pluralize(workshop.errors.count, "error") %> prohibited this workshop from being saved:</h2>
+
+      <ul>
+        <% workshop.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="mb-3">
+    <%= form.label :title, class:"form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class:"form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :category, class:"form-label" %>
+    <%= form.select :category, ['MOBA', 'FPS', 'MMORPG'], class: "form-control" %>
+  </div>
+
+    <div class="mb-3">
+    <%= form.label :price, class:"form-label" %>
+    <%= form.text_field :price, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :skill_level, class:"form-label" %>
+    <%= form.select :skill_level, ['Beginner', 'Average', 'Expert'], class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :location, class:"form-label" %>
+    <%= form.text_area :location, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit class:"btn btn-primary" %>
+  </div>
+<% end %>
