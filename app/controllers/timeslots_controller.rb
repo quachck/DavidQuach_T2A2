@@ -25,11 +25,11 @@ class TimeslotsController < ApplicationController
   def create
     @timeslot = Timeslot.new(timeslot_params)
     @timeslot.workshop_id = @workshop.id
-    
+    @timeslot.available_tickets = @timeslot.total_tickets
+
 
     respond_to do |format|
       if @timeslot.save && params[:save_end]
-        @timeslot.update_ticket_count
         # save to temporary spot for now, i want to redirect this to a page with all the workshops and attached timeslots
         format.html { redirect_to timeslot_path(@timeslot.id), notice: "Timeslot was successfully created" }
         format.json { render :show, status: :created, location: @timeslot }

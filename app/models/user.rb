@@ -6,5 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :workshops, dependent: :destroy
+  has_many :sales, class_name: "Booking", foreign_key: "instructor_id"
+  has_many :purchases, class_name: "Booking", foreign_key: "attendee_id"
   
 end
