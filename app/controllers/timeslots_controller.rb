@@ -1,5 +1,6 @@
 class TimeslotsController < ApplicationController
   before_action :set_timeslot, only: %i[ show edit update destroy ]
+  before_action :set_workshop, only: %i[index new create]
 
   # GET /timeslots or /timeslots.json
   def index
@@ -22,10 +23,16 @@ class TimeslotsController < ApplicationController
   # POST /timeslots or /timeslots.json
   def create
     @timeslot = Timeslot.new(timeslot_params)
+    @timeslot.workshop_id = @workshop.id
 
     respond_to do |format|
-      if @timeslot.save
-        format.html { redirect_to timeslot_url(@timeslot), notice: "Timeslot was successfully created." }
+      if @timeslot.save && params[:save_end]
+        # save to temporary spot for now, i want to redirect this to a page with all the workshops and attached timeslots
+        format.html { redirect_to timeslot_path(@timeslot.id), notice: "Timeslot was successfully created" }
+        format.json { render :show, status: :created, location: @timeslot }
+      elsif @timeslot.save && params[:save_continue]
+        # sent to a new timeslot page
+        format.html { redirect_to new_workshop_timeslot_path(@workshop.id), notice: "Timeslot was successfully created. You can add another one" }
         format.json { render :show, status: :created, location: @timeslot }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -61,6 +68,10 @@ class TimeslotsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_timeslot
       @timeslot = Timeslot.find(params[:id])
+    end
+
+    def set_workshop
+      @workshop = Workshop.find(params[:workshop_id])
     end
 
     # Only allow a list of trusted parameters through.

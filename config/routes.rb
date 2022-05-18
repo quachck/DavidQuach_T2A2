@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :bookings
-  resources :workshops do
-    resources :timeslots
-  end
   
+  resources :workshops, shallow: true do
+    resources :timeslots
+    resources :bookings
+  end
+
+
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

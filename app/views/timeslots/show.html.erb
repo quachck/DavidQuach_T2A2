@@ -4,7 +4,7 @@
 
 <div>
   <%= link_to "Edit this timeslot", edit_timeslot_path(@timeslot) %> |
-  <%= link_to "Back to timeslots", timeslots_path %>
+  <%= link_to "Back to timeslots", workshop_timeslots_path(@timeslot.workshop_id) %>
 
   <%= button_to "Destroy this timeslot", @timeslot, method: :delete %>
 </div>

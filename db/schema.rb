@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_18_123654) do
   end
 
   create_table "timeslots", force: :cascade do |t|
-    t.bigint "workshop_id", null: false
+    t.bigint "workshop_id"
     t.date "day"
     t.time "start_time"
     t.time "end_time"

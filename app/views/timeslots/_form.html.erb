@@ -1,10 +1,10 @@
-<%= form_with(model: timeslot) do |form| %>
-  <% if timeslot.errors.any? %>
+<%= form_for([@workshop, @timeslot]) do |form| %>
+  <% if @timeslot.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(timeslot.errors.count, "error") %> prohibited this timeslot from being saved:</h2>
+      <h2><%= pluralize(@timeslot.errors.count, "error") %> prohibited this timeslot from being saved:</h2>
 
       <ul>
-        <% timeslot.errors.each do |error| %>
+        <% @timeslot.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -12,40 +12,39 @@
   <% end %>
 
   <div>
-    <%= "Add new timeslot for #{@workshop.title} workshop" %>
+    <%= "Add new timeslot for #{} workshop" %>
   </div>
 
-  <div>
-    <%= form.label :day, style: "display: block" %>
-    <%= form.date_field :day %>
+  <div class="mb-3">
+    <%= form.label :day, class:"form-label" %>
+    <%= form.date_field :day, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :start_time, style: "display: block" %>
-    <%= form.time_field :start_time %>
+  <div class="mb-3">
+    <%= form.label :start_time, class:"form-label" %>
+    <%= form.time_field :start_time, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :end_time, style: "display: block" %>
-    <%= form.time_field :end_time %>
+  <div class="mb-3">
+    <%= form.label :end_time, class:"form-label" %>
+    <%= form.time_field :end_time, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
+  <div class="mb-3">
+    <%= form.label :price, class:"form-label" %>
+    <%= form.text_field :price, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :total_tickets, style: "display: block" %>
-    <%= form.number_field :total_tickets %>
+  <div class="mb-3">
+    <%= form.label :total_tickets, class:"form-label" %>
+    <%= form.number_field :total_tickets, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :available_tickets, style: "display: block" %>
-    <%= form.number_field :available_tickets %>
+  <div class="mb-3">
+    <%= form.submit "Save and finish", name:"save_end", class:"btn btn-primary" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit "Save and add more timeslots", name:"save_continue", class:"btn btn-primary" %>
   </div>
 <% end %>
