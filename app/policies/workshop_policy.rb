@@ -25,8 +25,9 @@ class WorkshopPolicy
   end
 
   def update?
-    user && (user == record.user)
+    user && (user.id == record.user_id)
   end
+  
 
   def edit?
     update?

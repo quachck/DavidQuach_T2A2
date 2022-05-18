@@ -3,7 +3,7 @@ class WorkshopsController < ApplicationController
   # authenticate user
   before_action :authenticate_user!, except: %i[index show]
   # check user authorisation
-  before_action :check_auth
+  before_action :check_auth, except: %i[new index]
 
   # GET /workshops or /workshops.json
   def index
@@ -74,6 +74,6 @@ class WorkshopsController < ApplicationController
     end
 
     def check_auth
-      authorize(Workshop)
+      authorize(@workshop)
     end
 end
