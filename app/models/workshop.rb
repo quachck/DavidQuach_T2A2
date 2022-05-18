@@ -3,6 +3,6 @@ class Workshop < ApplicationRecord
   # validates :price, numericality: { greater_than: 0 }
 
   belongs_to :user
-  has_many :timeslots
+  has_many :timeslots, dependent: :destroy
   has_one_attached :img
 end
