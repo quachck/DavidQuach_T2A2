@@ -17,7 +17,7 @@ class WorkshopPolicy
   end
 
   def create?
-    user
+    user == record.user
   end
 
   def new?

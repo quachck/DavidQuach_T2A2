@@ -3,7 +3,7 @@ class WorkshopsController < ApplicationController
   # authenticate user
   before_action :authenticate_user!, except: %i[index show]
   # check user authorisation
-  before_action :check_auth, except: %i[new index create]
+  before_action :check_auth, except: %i[new index create show]
 
   # GET /workshops or /workshops.json
   def index
@@ -12,6 +12,7 @@ class WorkshopsController < ApplicationController
 
   # GET /workshops/1 or /workshops/1.json
   def show
+    @timeslots = Timeslot.all.select { |e| e.workshop_id == @workshop.id }
   end
 
   # GET /workshops/new
