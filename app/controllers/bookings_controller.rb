@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[ show edit update destroy ]
+  before_action :set_timeslot, only: %i[ new create ]
+  before_action :authenticate_user!
 
   # GET /bookings or /bookings.json
   def index
@@ -13,6 +15,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+
   end
 
   # GET /bookings/1/edit
@@ -22,17 +25,36 @@ class BookingsController < ApplicationController
   # POST /bookings or /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    @booking.attendee_id = current_user.id
+    @booking.instructor_id = @timeslot.workshop.user_id
+    @booking.timeslot_id = @timeslot.id
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
-        format.json { render :show, status: :created, location: @booking }
+        format.html { redirect_to root_url, notice: "Booking was successfully created." }
+        # format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
   end
+  
+  # def create
+  #   @booking = Booking.new(booking_params)
+  #   @book.attendee_id = current_user.id
+  #   # @booking.instructor_id =
+
+  #   respond_to do |format|
+  #     if @booking.save
+  #       format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
+  #       format.json { render :show, status: :created, location: @booking }
+  #     else
+  #       format.html { render :new, status: :unprocessable_entity }
+  #       format.json { render json: @booking.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /bookings/1 or /bookings/1.json
   def update
@@ -61,6 +83,10 @@ class BookingsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
       @booking = Booking.find(params[:id])
+    end
+
+    def set_timeslot
+      @timeslot = Timeslot.find(params[:timeslot_id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,37 +1,27 @@
 <div id="<%= dom_id timeslot %>">
-  <p>
-    <strong>Workshop:</strong>
-    <%= timeslot.workshop.title %>
-  </p>
+  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+    <div class="card-header"><%= timeslot.workshop.title %></div>
+    <div class="card-body">
+      
+    <p class="card-text">
+      <strong>Day: </strong>
+      <%= timeslot.day.strftime("%A  %B  %d  %Y") %>
+    </p>
 
-  <p>
-    <strong>Day:</strong>
-    <%= timeslot.day %>
-  </p>
+    <p class="card-text">
+      <strong>Time: </strong>
+      <%= "#{timeslot.start_time.strftime("%I:%M%p")} - #{timeslot.end_time.strftime("%I:%M%p")}" %>
+    </p>
 
-  <p>
-    <strong>Start time:</strong>
-    <%= timeslot.start_time %>
-  </p>
+    <p class="card-text">
+      <strong>Price: </strong>
+      <%= number_to_currency(timeslot.price) %>
+    </p>
 
-  <p>
-    <strong>End time:</strong>
-    <%= timeslot.end_time %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= timeslot.price %>
-  </p>
-
-  <p>
-    <strong>Total tickets:</strong>
-    <%= timeslot.total_tickets %>
-  </p>
-
-  <p>
-    <strong>Available tickets:</strong>
-    <%= timeslot.available_tickets %>
-  </p>
-
+    <p class="card-text">
+      <strong>Tickets remaining tickets:</strong>
+      <%= timeslot.available_tickets %>
+    </p>
+    </div>
+  </div>
 </div>

@@ -43,7 +43,7 @@
           <%= timeslot.available_tickets %>
         </td>
         <td>
-          <%= "BOOK!" %>
+          <%= link_to "Book", new_timeslot_booking_path(timeslot.id), class: "btn btn-success" %>
         </td>
       </tr>
     <% end %>

@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   
   resources :workshops, shallow: true do
-    resources :timeslots
-    resources :bookings
+    resources :timeslots, shallow: true do
+      resources :bookings
+    end
   end
+  # get '/workshops/:id/bookings/new', to: 'bookings#new', as: 'new_booking'
+  # post '/workshops/:id/bookings', to: 'bookings#create'
 
 
   devise_for :users
