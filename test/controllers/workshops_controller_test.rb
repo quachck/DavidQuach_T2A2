@@ -17,7 +17,7 @@ class WorkshopsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create workshop" do
     assert_difference("Workshop.count") do
-      post workshops_url, params: { workshop: { category: @workshop.category, description: @workshop.description, location: @workshop.location, skill_level: @workshop.skill_level, title: @workshop.title, user_id: @workshop.user_id } }
+      post workshops_url, params: { workshop: { description: @workshop.description, title: @workshop.title } }
     end
 
     assert_redirected_to workshop_url(Workshop.last)
@@ -34,7 +34,7 @@ class WorkshopsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update workshop" do
-    patch workshop_url(@workshop), params: { workshop: { category: @workshop.category, description: @workshop.description, location: @workshop.location, skill_level: @workshop.skill_level, title: @workshop.title, user_id: @workshop.user_id } }
+    patch workshop_url(@workshop), params: { workshop: { description: @workshop.description, title: @workshop.title } }
     assert_redirected_to workshop_url(@workshop)
   end
 

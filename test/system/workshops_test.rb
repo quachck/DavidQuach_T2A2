@@ -14,12 +14,8 @@ class WorkshopsTest < ApplicationSystemTestCase
     visit workshops_url
     click_on "New workshop"
 
-    fill_in "Category", with: @workshop.category
     fill_in "Description", with: @workshop.description
-    fill_in "Location", with: @workshop.location
-    fill_in "Skill level", with: @workshop.skill_level
     fill_in "Title", with: @workshop.title
-    fill_in "User", with: @workshop.user_id
     click_on "Create Workshop"
 
     assert_text "Workshop was successfully created"
@@ -30,12 +26,8 @@ class WorkshopsTest < ApplicationSystemTestCase
     visit workshop_url(@workshop)
     click_on "Edit this workshop", match: :first
 
-    fill_in "Category", with: @workshop.category
     fill_in "Description", with: @workshop.description
-    fill_in "Location", with: @workshop.location
-    fill_in "Skill level", with: @workshop.skill_level
     fill_in "Title", with: @workshop.title
-    fill_in "User", with: @workshop.user_id
     click_on "Update Workshop"
 
     assert_text "Workshop was successfully updated"
