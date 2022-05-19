@@ -5,5 +5,10 @@ Rails.application.routes.draw do
     end
   end
   devise_for :users
+
+  get "instructor", to: "workshops#instructor"
+  get "sales", to: "bookings#sales"
+  get "purchases", to: "bookings#purchases"
+
   root "workshops#index"
 end

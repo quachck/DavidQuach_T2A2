@@ -6,31 +6,39 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="nav me-auto mb-2 mb-lg-0">
-      
-        <li class="nav-item">
+        <li class="nav-item ms-1">
             <%= link_to('Create Workshop', new_workshop_path, class: 'btn btn-success') if user_signed_in? && !current_page?(new_workshop_path) %>
         </li>
+        <% if user_signed_in? %>
+          <li class="nav-item ms-1">
+              <%= link_to 'Manage Workshops', instructor_path, class: 'btn btn-secondary' %>
+          </li>
+          <li class="nav-item ms-1">
+              <%= link_to 'View Sales', sales_path, class: 'btn btn-secondary' %>
+          </li>
+          <li class="nav-item ms-1">
+              <%= link_to 'View Purchases', purchases_path, class: 'btn btn-secondary' %>
+          </li>
+        <% end %>
       </ul>
       <ul class="nav justify-content-end">
         <% if user_signed_in? %>
-          <li class="d-flex flex-column justify-content-center">
-            <div>Welcome, <%= current_user.email %>!</div> 
+          <li class="d-flex flex-column justify-content-center me-1">
+            <div>Welcome, <%= current_user.first_name %>!</div> 
           </li>
-          
-
-
-          <li class="nav-item">
-            <%= button_to('Sign Out', destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to logout?" }}, class:"nav-link btn-link") %>
+        
+          <li class="nav-item ms-1">
+            <%= button_to('Sign Out', destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to logout?" }}, class:"btn btn-primary") %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Edit Profile', edit_user_registration_path, class: 'nav-link' %>
+          <li class="nav-item ms-1">
+            <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-primary" %>
           </li>
         <% else %>
-          <li class="nav-item">
-            <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
+          <li class="nav-item ms-1">
+            <%= link_to 'Sign Up', new_user_registration_path, class:"btn btn-primary" %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
+          <li class="nav-item ms-1">
+            <%= link_to 'Sign In', new_user_session_path, class:"btn btn-primary" %>
           </li>
         <% end %>
       </ul>

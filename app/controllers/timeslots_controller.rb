@@ -1,4 +1,5 @@
 class TimeslotsController < ApplicationController
+  before_action :eager_load
   before_action :set_timeslot, only: %i[ show edit update destroy ]
   before_action :set_workshop, only: %i[ index new create ]
   before_action :authenticate_user!, except: %i[index show]
@@ -27,12 +28,9 @@ class TimeslotsController < ApplicationController
   def create
     @timeslot = Timeslot.new(timeslot_params)
     @timeslot.workshop_id = @workshop.id
-    @timeslot.available_tickets = @timeslot.total_tickets
-
 
     respond_to do |format|
       if @timeslot.save && params[:save_end]
-        # save to temporary spot for now, i want to redirect this to a page with all the workshops and attached timeslots
         format.html { redirect_to timeslot_path(@timeslot.id), notice: "Timeslot was successfully created" }
         format.json { render :show, status: :created, location: @timeslot }
       elsif @timeslot.save && params[:save_continue]
@@ -77,6 +75,12 @@ class TimeslotsController < ApplicationController
 
     def set_workshop
       @workshop = Workshop.find(params[:workshop_id])
+    end
+
+    #eager load associations 
+    def eager_load
+      @timeslots = Timeslot.includes(:workshop)
+      @workshops = Workshop.includes(:user)
     end
 
     # Only allow a list of trusted parameters through.

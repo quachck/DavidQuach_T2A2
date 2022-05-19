@@ -1,0 +1,22 @@
+<div class="center mt-3"><h1>Your Workshops</h1></div>
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Workshop</th>
+    <th>Created at</th>
+    <th></th>
+  </tr>
+  <% @workshops.each do |workshop| %>
+    <tr>
+      <td>
+        <%= workshop.title %>
+      </td>
+      <td>
+        <%= workshop.created_at.strftime("%A  %B  %d  %Y %I:%M%p") %>
+      </td>
+      <td>
+        <%= link_to "View", workshop_path(workshop.id), class: "btn btn-primary" %>
+      </td>
+    </tr>
+  <% end %>
+</table>

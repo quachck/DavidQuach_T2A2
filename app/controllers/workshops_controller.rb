@@ -1,9 +1,12 @@
 class WorkshopsController < ApplicationController
+  before_action :eager_load
   before_action :set_workshop, only: %i[ show edit update destroy]
-  # authenticate user
   before_action :authenticate_user!, except: %i[index show]
-  # check user authorisation
-  before_action :check_auth, except: %i[new index create show]
+  before_action :check_auth, except: %i[new index create show instructor]
+
+  def instructor
+    @workshops = Workshop.where(user: current_user)
+  end
 
   # GET /workshops or /workshops.json
   def index
@@ -11,7 +14,6 @@ class WorkshopsController < ApplicationController
   end
   
   def show
-    # @timeslots = Timeslot.all.select { |e| e.workshop_id == @workshop.id }
     @timeslots = Timeslot.where("workshop_id = ?", @workshop.id).order(day: :asc)
   end
 
@@ -78,5 +80,11 @@ class WorkshopsController < ApplicationController
 
     def check_auth
       authorize(@workshop)
+    end
+
+    #eager load associations 
+    def eager_load
+      @timeslots = Timeslot.includes(:workshop)
+      @workshops = Workshop.includes(:user)
     end
 end

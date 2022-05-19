@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :sales, class_name: "Booking", dependent: :destroy, foreign_key: "instructor_id"
   has_many :purchases, class_name: "Booking", dependent: :destroy, foreign_key: "attendee_id"
 
+  validates :first_name, :last_name, :number, presence: true
+  validates :number, numericality: true
+
   def full_name 
     "#{first_name} #{last_name}"
   end
