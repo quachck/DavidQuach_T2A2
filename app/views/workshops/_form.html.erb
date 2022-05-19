@@ -23,6 +23,11 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label :location, class:"form-label" %>
+    <%= form.text_area :location, class: "form-control" %>
+  </div>
+  
+  <div class="mb-3">
     <%= form.label :category, class:"form-label" %>
     <%= form.select :category, ['MOBA', 'FPS', 'MMORPG'], class: "form-control" %>
   </div>
@@ -32,9 +37,10 @@
     <%= form.select :skill_level, ['Beginner', 'Average', 'Expert'], class: "form-control" %>
   </div>
 
+
   <div class="mb-3">
-    <%= form.label :location, class:"form-label" %>
-    <%= form.text_area :location, class: "form-control" %>
+    <%= form.label :img, class:"form-label" %>
+    <%= form.file_field :img, class: "form-control" %>
   </div>
 
   <div class="mb-3">

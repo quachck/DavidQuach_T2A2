@@ -72,7 +72,7 @@ class WorkshopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def workshop_params
-      params.require(:workshop).permit(:user_id, :title, :price, :description, :category, :skill_level, :location)
+      params.require(:workshop).permit(:user_id, :title, :price, :description, :category, :skill_level, :location, :img)
     end
 
     def check_auth

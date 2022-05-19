@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @timeslot %>
 
 <div>
@@ -7,7 +5,6 @@
   <%= link_to "Back to timeslots", workshop_timeslots_path(@timeslot.workshop_id) %>
 
   <%= button_to "Destroy this timeslot", @timeslot, method: :delete, class:'btn btn-danger' %>
-  <%= button_to("Confirm booking!", @booking, method: :post, form: { data: { turbo_confirm: "Are you sure you want to book" }}, type:'button', class: 'btn btn-success') %>
 </div>
 
 </div>

@@ -1,5 +1,10 @@
 h1 {
-  color: purple;
+  color: rgb(0, 0, 0);
+}
+
+.clean-link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
 }
 
 .btn-link {
@@ -10,4 +15,8 @@ h1 {
 .txt-align {
   text-align: center;
   height: min-content;
+}
+
+body {
+  background-color: rgb(207, 207, 207) !important;
 }

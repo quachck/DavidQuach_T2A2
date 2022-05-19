@@ -8,6 +8,6 @@
 
 User.destroy_all
 
-david = User.create(email: 'david@qmail.com', password: 'apple322')
-bob = User.create(email: 'bob@qmail.com', password: 'apple322')
+david = User.create(first_name: 'david', last_name: 'quach', email: 'david@qmail.com', number: '1234567890', password: 'apple322')
+bob = User.create(first_name: 'bob', last_name: 'bee',email: 'bob@qmail.com', number: '1234567890', password: 'apple322')
 puts "Users: #{User.count}"

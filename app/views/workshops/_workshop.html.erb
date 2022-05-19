@@ -1,6 +1,6 @@
 <div class="card mb-3 mt-3" style="width: 18rem;" id="<%= dom_id workshop %>">
   <img class="card-img-top">
-    <%= link_to(cl_image_tag(workshop.img.key, crop: :scale, width: 200, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']), workshop) if workshop.img.attached? %>
+    <%= link_to(cl_image_tag(workshop.img.key, crop: :scale, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']), workshop) if workshop.img.attached? %>
   </img>
   <div class="card-body">
     <h5 class="card-title"><%= workshop.title %></h5>

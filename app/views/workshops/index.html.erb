@@ -1,10 +1,10 @@
 <div id="workshops" class ="row center">
   <% @workshops.each do |workshop| %>
-    <%= render workshop %>
-    <p>
-      <%= link_to "Show this workshop", workshop %>
-    </p>
+    <div class="col">
+      <%= render workshop %>
+      <p>
+        <%= link_to "Show this workshop", workshop %>
+      </p>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New workshop", new_workshop_path, class: "btn btn-link"  %>
