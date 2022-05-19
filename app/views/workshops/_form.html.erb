@@ -29,7 +29,7 @@
   
   <div class="mb-3">
     <%= form.label :category, class:"form-label" %>
-    <%= form.select :category, ['MOBA', 'FPS', 'MMORPG'], class: "form-control" %>
+    <%= form.select :category, ['MOBA', 'FPS', 'MMORPG', 'RTS'], class: "form-control" %>
   </div>
 
   <div class="mb-3">
@@ -46,5 +46,7 @@
   <div class="mb-3">
     <%= form.submit "Save and proceed to add time slots", class:"btn btn-primary" %>
   </div>
+
+  <%= link_to "Back to workshops", workshops_path, class:"btn btn-primary"  %>
 
 <% end %>

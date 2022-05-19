@@ -24,7 +24,7 @@
 
   <div class="mb-3">
     <%= form.label :category, class:"form-label" %>
-    <%= form.select :category, ['MOBA', 'FPS', 'MMORPG'], class: "form-control" %>
+    <%= form.select :category, ['MOBA', 'FPS', 'MMORPG','RTS'], class: "form-control" %>
   </div>
 
   <div class="mb-3">
@@ -40,5 +40,6 @@
   <div class="mb-3">
     <%= form.submit "Save", class:"btn btn-primary" %>
   </div>
-
+    <%= link_to "Back", @workshop, class: "mb-3 btn btn-primary" %> 
+    <%= link_to "See all workshops", workshops_path, class: "mb-3 btn btn-primary" %>
 <% end %>

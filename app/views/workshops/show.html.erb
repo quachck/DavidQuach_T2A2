@@ -1,52 +1,65 @@
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <%= cl_image_tag(@workshop.img.key, crop: :scale ,width: 500, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @workshop.img.attached? %>
-    </div>
-    <div class="col-6">
-      <h3><%= @workshop.title %></h3>
-      <p><%= @workshop.description %></p>
-      <%# <%= link_to "Buy", new_workshop_order_path(@workshop), class: "btn btn-primary" %> %>
-    </div>
-  </div>
-
-
-  <div class="btn-group" role="group" aria-label="Basic example">
-    <%= link_to "Back", workshops_path, class: "btn btn-primary" %>
-    <% if user_signed_in? && current_user == @workshop.user %>
-      <%= link_to "Edit this workshop", edit_workshop_path(@workshop), class: "btn btn-primary" %>
-      <%= link_to "Add more timeslots", new_workshop_timeslot_path(@workshop), class: "btn btn-primary" %>
-      <%= button_to("Destroy this workshop", @workshop, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this workshop" }}, type:'button', class: 'btn btn-danger') %>
+<div class="row mt-3 mb-3">
+  <div class="col-6">
+    <div><p class="badge rounded-pill bg-primary"><%= @workshop.category %></p>
+    <p class="badge rounded-pill bg-primary"><%= @workshop.skill_level %></p></div>
+    
+    <% if @workshop.img.attached? %>
+      <%= cl_image_tag(@workshop.img.key, crop: :scale, width: 375, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'])%>
+    <% else %>
+      <%= cl_image_tag("palceholder_nwndnl.png", crop: :scale, width: 375, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'])%>
     <% end %>
   </div>
-
-  <table class="table table-striped table-bordered">
-    <tr>
-      <th>Day</th>
-      <th>Time</th>
-      <th>Price</th>
-      <th>Remaining Tickets</th>
-      <th>Book!</th>
-    </tr>
-    <% @timeslots.each do |timeslot| %>
-      <tr>
-        <td>
-          <%= timeslot.day.strftime("%A  %B  %d  %Y") %>
-        </td>
-        <td>
-          <%= "#{timeslot.start_time.strftime("%I:%M%p")} - #{timeslot.end_time.strftime("%I:%M%p")}" %>
-        </td>
-        <td>
-          <%= number_to_currency(timeslot.price) %>
-        </td>
-        <td>
-          <%= timeslot.available_tickets %>
-        </td>
-        <td>
-          <%= link_to "Book", new_timeslot_booking_path(timeslot.id), class: "btn btn-success" %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <div class="col-6">
+    <h3><%= @workshop.title %></h3>
+    <h4>Instructor: <%= @workshop.user.full_name %></h4>
+    <p><%= @workshop.description %></p>
+  </div>
 </div>
+
+
+
+<%= link_to "Back", workshops_path, class: "btn btn-primary" %>
+<% if user_signed_in? && current_user == @workshop.user %>
+  <%= link_to "Edit this workshop", edit_workshop_path(@workshop), class: "btn btn-primary" %>
+  <%= link_to "Add more timeslots", new_workshop_timeslot_path(@workshop), class: "btn btn-primary" %>
+  <%= button_to("Delete workshop", @workshop, method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this workshop" }}, type:'button', class: 'btn btn-danger mt-3') %>
+<% end %>
+
+<h1 class="mt-3">Time Slots</h1>
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Day</th>
+    <th>Time</th>
+    <th>Price</th>
+    <th>Remaining Tickets</th>
+    <th></th>
+  </tr>
+  <% @timeslots.each do |timeslot| %>
+    <tr>
+      <td>
+        <%= timeslot.day.strftime("%A  %B  %d  %Y") %>
+      </td>
+      <td>
+        <%= "#{timeslot.start_time.strftime("%I:%M%p")} - #{timeslot.end_time.strftime("%I:%M%p")}" %>
+      </td>
+      <td>
+        <%= number_to_currency(timeslot.price) %>
+      </td>
+      <td>
+        <%= timeslot.available_tickets %>
+      </td>
+      <% if current_user != @timeslots.first.workshop.user %>
+        <td>
+        <%= link_to "Book", new_timeslot_booking_path(timeslot.id), class: "btn btn-success" %>
+        </td>
+      <% else %>
+        <td>
+        <%= link_to "Edit", edit_timeslot_path(timeslot.id), class: "btn btn-primary mb-2" %>
+        <%= button_to "Delete", {controller: :timeslots, action: :destroy, id: timeslot.id}, form: { data: { turbo_confirm: "Are you sure you want to delete this timeslot" }}, method: :delete, type:'button', class: 'btn btn-danger' %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
 

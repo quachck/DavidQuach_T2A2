@@ -1,10 +1,11 @@
 class TimeslotsController < ApplicationController
   before_action :set_timeslot, only: %i[ show edit update destroy ]
-  before_action :set_workshop, only: %i[ index new create]
+  before_action :set_workshop, only: %i[ index new create ]
+  before_action :authenticate_user!, except: %i[index show]
 
   # GET /timeslots or /timeslots.json
   def index
-    @timeslots = Timeslot.all.filter { |e| e.workshop.id == @workshop.id}
+    @timeslots = Timeslot.all.filter { |e| e.workshop.id == @workshop.id }
   end
 
   # GET /timeslots/1 or /timeslots/1.json
@@ -19,6 +20,7 @@ class TimeslotsController < ApplicationController
 
   # GET /timeslots/1/edit
   def edit
+    authorize(@timeslot)
   end
 
   # POST /timeslots or /timeslots.json
@@ -59,12 +61,12 @@ class TimeslotsController < ApplicationController
 
   # DELETE /timeslots/1 or /timeslots/1.json
   def destroy
-    @timeslot.destroy
-
+    
     respond_to do |format|
-      format.html { redirect_to timeslots_url, notice: "Timeslot was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to workshop_path(@timeslot.workshop.id), notice: "Timeslot was successfully destroyed." }
+      format.json { render :no_content }
     end
+    @timeslot.destroy
   end
 
   private

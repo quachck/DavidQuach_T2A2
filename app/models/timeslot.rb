@@ -4,6 +4,7 @@ class Timeslot < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
   def update_ticket_count
-    available_tickets =- 1
+    self.available_tickets -= 1
+    self.save
   end
 end

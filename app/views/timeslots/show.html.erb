@@ -1,10 +1,9 @@
-<%= render @timeslot %>
-
-<div>
-  <%= link_to "Edit this timeslot", edit_timeslot_path(@timeslot) %> |
-  <%= link_to "Back to timeslots", workshop_timeslots_path(@timeslot.workshop_id) %>
-
-  <%= button_to "Destroy this timeslot", @timeslot, method: :delete, class:'btn btn-danger' %>
+<div class="d-flex align-items-center flex-column">
+  <%= render @timeslot %>
+  <div>
+    <%= link_to "Back to workshop", workshop_path(@timeslot.workshop.id), class:"btn btn-primary" %>
+    <%= link_to "Edit this timeslot", edit_timeslot_path(@timeslot.id), class:'btn btn-primary' %>
+    <%= button_to "Destroy this timeslot", @timeslot, method: :delete, class:'btn btn-danger mt-3' %>
+  </div>
 </div>
 
-</div>

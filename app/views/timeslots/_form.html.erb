@@ -11,9 +11,6 @@
     </div>
   <% end %>
 
-  <div>
-    <%= "Add new timeslot for #{} workshop" %>
-  </div>
 
   <div class="mb-3">
     <%= form.label :day, class:"form-label" %>
@@ -36,8 +33,8 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :total_tickets, class:"form-label" %>
-    <%= form.number_field :total_tickets, class: "form-control" %>
+    <%= form.label :available_tickets, class:"form-label" %>
+    <%= form.number_field :available_tickets, class: "form-control" %>
   </div>
 
   <div class="mb-3">
@@ -47,4 +44,5 @@
   <div class="mb-3">
     <%= form.submit "Save and add more timeslots", name:"save_continue", class:"btn btn-primary" %>
   </div>
+  
 <% end %>

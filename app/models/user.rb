@@ -8,5 +8,8 @@ class User < ApplicationRecord
   has_many :workshops, dependent: :destroy
   has_many :sales, class_name: "Booking", dependent: :destroy, foreign_key: "instructor_id"
   has_many :purchases, class_name: "Booking", dependent: :destroy, foreign_key: "attendee_id"
-  
+
+  def full_name 
+    "#{first_name} #{last_name}"
+  end
 end

@@ -9,10 +9,10 @@ class WorkshopsController < ApplicationController
   def index
     @workshops = Workshop.all
   end
-
-  # GET /workshops/1 or /workshops/1.json
+  
   def show
-    @timeslots = Timeslot.all.select { |e| e.workshop_id == @workshop.id }
+    # @timeslots = Timeslot.all.select { |e| e.workshop_id == @workshop.id }
+    @timeslots = Timeslot.where("workshop_id = ?", @workshop.id).order(day: :asc)
   end
 
   # GET /workshops/new
@@ -59,7 +59,7 @@ class WorkshopsController < ApplicationController
     @workshop.destroy
 
     respond_to do |format|
-      format.html { redirect_to workshops_url, notice: "Workshop was successfully destroyed." }
+      format.html { redirect_to workshops_url, notice: "#{@workshop.title} was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -67,6 +67,7 @@ class WorkshopsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_workshop
+      @workshop = Workshop.includes(:user, :timeslots)
       @workshop = Workshop.find(params[:id])
     end
 

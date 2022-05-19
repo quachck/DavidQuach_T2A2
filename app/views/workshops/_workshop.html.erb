@@ -1,14 +1,24 @@
-<div class="card mb-3 mt-3" style="width: 18rem;" id="<%= dom_id workshop %>">
-  <img class="card-img-top">
-    <%= link_to(cl_image_tag(workshop.img.key, crop: :scale, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']), workshop) if workshop.img.attached? %>
-  </img>
-  <div class="card-body">
+<div class="card mb-3 mt-3" id="<%= dom_id workshop %>">
+  <div class="d-flex mt-2 ms-2 gap-1">
+    <p class="badge rounded-pill bg-primary"><%= workshop.category %></p>
+    <p class="badge rounded-pill bg-primary"><%= workshop.skill_level %></p>
+  </div>
+  <div class="d-flex justify-content-center">
+      <% if workshop.img.attached? %>
+        <%= cl_image_tag(workshop.img.key, crop: :scale, width: 200, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'])%>
+      <% else %>
+        <%= cl_image_tag("palceholder_nwndnl.png", crop: :scale, width: 200, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'])%>
+      <% end %>
+  </div>
+  <div class="card-body p-4">
     <h5 class="card-title"><%= workshop.title %></h5>
+    <p class="card-text"><%= "Instructor: #{workshop.user.full_name}" %></p>
     <p class="card-text"><%= workshop.description %></p>
-    <p class="card-text"><%= workshop.category %></p>
-    <p class="card-text"><%= workshop.skill_level %></p>
+    <h5 class="card-title">Location</h5>
     <p class="card-text"><%= workshop.location %></p>
-    <p class="card-text"><%= "Sold by #{workshop.user.email}" %></p>
+
+    <%= link_to "Check availabilty", workshop, class:"btn btn-success", style:"text-decoration: none;" %>
+
     <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
   </div>
 </div>

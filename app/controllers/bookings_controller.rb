@@ -15,7 +15,6 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
-
   end
 
   # GET /bookings/1/edit
@@ -24,6 +23,7 @@ class BookingsController < ApplicationController
 
   # POST /bookings or /bookings.json
   def create
+    @timeslot.update_ticket_count
     @booking = Booking.new(booking_params)
     @booking.attendee_id = current_user.id
     @booking.instructor_id = @timeslot.workshop.user_id
@@ -91,6 +91,6 @@ class BookingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.fetch(:booking, {})
+      params.fetch(:booking, {}).permit(:timeslot_id)
     end
 end

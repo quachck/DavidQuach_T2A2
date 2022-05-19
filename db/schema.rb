@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_19_043552) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_19_134133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,7 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_19_043552) do
     t.time "start_time"
     t.time "end_time"
     t.decimal "price"
-    t.integer "total_tickets"
     t.integer "available_tickets"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

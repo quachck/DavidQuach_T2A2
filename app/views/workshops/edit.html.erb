@@ -1,10 +1,4 @@
-<h1>Editing workshop</h1>
+<h1 class="mt-3">Editing <%= @workshop.title %></h1>
 
 <%= render "edit_form", workshop: @workshop %>
 
-<br>
-
-<div>
-  <%= link_to "Show this workshop", @workshop, class: "btn btn-link" %> |
-  <%= link_to "Back to workshops", workshops_path, class: "btn btn-link" %>
-</div>
