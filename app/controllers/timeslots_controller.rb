@@ -6,6 +6,7 @@ class TimeslotsController < ApplicationController
 
   # GET /timeslots or /timeslots.json
   def index
+    # select timeslots belonging to the curent workshop
     @timeslots = Timeslot.all.filter { |e| e.workshop.id == @workshop.id }
   end
 

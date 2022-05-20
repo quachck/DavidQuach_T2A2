@@ -5,15 +5,18 @@ class WorkshopsController < ApplicationController
   before_action :check_auth, except: %i[new index create show instructor]
 
   def instructor
+    # select workshops that belong to the curent user
     @workshops = Workshop.where(user: current_user)
   end
 
   # GET /workshops or /workshops.json
   def index
+    # select all workshops
     @workshops = Workshop.all
   end
   
   def show
+    # select timeslots that belong to the current workshop
     @timeslots = Timeslot.where("workshop_id = ?", @workshop.id).order(day: :asc)
   end
 
