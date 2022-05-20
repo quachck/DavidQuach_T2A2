@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
   def create
     @timeslot.update_ticket_count
     @booking = Booking.new(booking_params)
-    @instructor = @timeslot.workshop.user
+    # @instructor = @timeslot.workshop.user
 
     @booking.timeslot_id = @timeslot.id
     @booking.attendee_id = current_user.id
