@@ -16,7 +16,7 @@ Rank Up is a 2 sided gaming service marketplace app, users who wish to share the
 
 ## Sitemap
 
-![app_ss](docs/sitemap.PNG "app_ss") 
+![app_ss](../sitemap.PNG"app_ss") 
 
 ## Screenshots
 
@@ -52,7 +52,7 @@ New workshop
 
 Show workshop
 
-![app_ss](docs/wf-3.PNG "app_ss") 
+![app_ss](../docs/wf-3.PNG "app_ss") 
 
 Show workshops
 
@@ -85,7 +85,7 @@ Heroku is a container-based cloud Platform as a Service, and will be used to dep
 
 ## Project Tracking
 
-I began by brainstorming app ideas, once it was approved I read through the rubrik and began to create my user stories and tasks and used [Trello](https://trello.com/b/lLfCgmKq/t1a3) to track them. 
+I began by brainstorming app ideas, once it was approved I read through the rubrik and began to create my user stories and tasks and used [Trello](https://trello.com/b/8hxMLkxW/t2a2) to track them. 
 
 **User stories**
 
