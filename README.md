@@ -228,7 +228,7 @@ This is only the MVP, unfortunately I wasn't able to implement all the features 
 
 ## ERD And Database Schema Design
 
-![erd](docs/erd.PNG "erd") 
+![erd](docs/erd.png "erd") 
 
 
 
