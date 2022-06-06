@@ -10,7 +10,7 @@ One of the main appeals of video gaming is that you can have endless hours of fu
 It’s very difficult to obtain or offer gaming services such as coaching in a physical environment due its redundant nature, you’d usually just achieve this online using a mic and webcam. The Rank Up marketplace app aims to bring people who wish to learn new or improve on their current gaming skillset and people who wish to share their knowledge with an emphasis on face to face contact. The app is targeted for anyone interested in gaming to sweaty enthusiasts who wish to gain an upper edge against their online enemies. 
 
 ## Functionality/Features
-Rank Up is a 2 sided gaming service marketplace app, users who wish to share their wisdom can join as an `instructor`. An instructor can host gaming `workshops` on a particular topic or skill and users who wish to learn about these topics can join as `attendees` and `book` a workshop `timeslot`. Users can be both an instructor and attendee and are able to view or edit their workshops or bookings at any time via their dashboard. Currently, the paymeny system is not set up so anyone can book a timeslot.
+Rank Up is a 2 sided gaming service marketplace app, users who wish to share their wisdom can join as an `instructor`. An instructor can host gaming `workshops` on a particular topic or skill and users who wish to learn about these topics can join as `attendees` and `book` a workshop `timeslot`. Users can be both an instructor and attendee and are able to view or edit their workshops or bookings at any time via their dashboard. Currently, the payment system is not set up so anyone can book a timeslot.
 
 
 
@@ -85,14 +85,14 @@ Heroku is a container-based cloud Platform as a Service, and will be used to dep
 
 ## Project Tracking
 
-I began by brainstorming app ideas, once it was approved I read through the rubrik and began to create my user stories and tasks and used [Trello](https://trello.com/b/8hxMLkxW/t2a2) to track them. 
+I began by brainstorming app ideas, once it was approved I read through the rubric and began to create my user stories and tasks and used [Trello](https://trello.com/b/8hxMLkxW/t2a2) to track them. 
 
 **User stories**
 
 - As an instructor, I want to be able to edit my workshops so I can make amendments when needed.
 - As an instructor, I want to be able to host workshops to get attendees and teach them new skills.
 - As an instructor, I want to be able to view my workshops and bookings so I can prepare the workshop accordingly.
-- As an attendee, I want to be able to book workshop timeslots so that I new new skills.
+- As an attendee, I want to be able to book workshop timeslots so that I can learn new skills.
 - As an attendee, I want to be able to view my bookings, so that I can prepare for the workshop accordingly.
 - As a user, I want to be able to edit my account details for the event that they change.
 - As an admin user, I want to be able to view and edit all resources in the event that it's needed. (not implemented)
@@ -104,7 +104,7 @@ I began by brainstorming app ideas, once it was approved I read through the rubr
 ![trello](docs/trello.PNG "trello") 
 
 
-## Abstactions
+## Abstractions
 In order to achieve the desired app, 4 key components are needed – User, Workshop, Timeslot and Booking.
 
 **User** – apps are created for the user, it’s the most important component and will be used to model the `instructors` and `attendees` of the app. User information will be used to help setup the rest of the app.
@@ -186,7 +186,7 @@ belongs_to :attendee, class_name: "User
 
 ##  Database Relations
 
-The general flow of the data base is as follow, a `user` will sign up to create an account. They can then create a `workshop` and allocate `timeslots` to it, this will create and make the listing visible on the app. A user can now when `book` a timeslot for that workshop if they wish. The attributes for each table and the relations between them are fairly straight forward consisting of mainly `one to many` relations. The only small issue was establishing the relation between users and bookings, a user can have many bookings and a booking belongs to exactly 2 users. It's not possible to use `user_id` as a foreign key twice in the booking table, the solution is to use the `:class_name` option to establish this relation. The timeslot should have been more appropriately named session and the `available_tickets` attributes should probably be on it's own table to meet normalistion. The `location` attribute should have also been an address referenced in another table.
+The general flow of the data base is as follow, a `user` will sign up to create an account. They can then create a `workshop` and allocate `timeslots` to it, this will create and make the listing visible on the app. A user can now when `book` a timeslot for that workshop if they wish. The attributes for each table and the relations between them are fairly straight forward consisting of mainly `one to many` relations. The only small issue was establishing the relation between users and bookings, a user can have many bookings and a booking belongs to exactly 2 users. It's not possible to use `user_id` as a foreign key twice in the booking table, the solution is to use the `:class_name` option to establish this relation. The timeslot should have been more appropriately named session and the `available_tickets` attributes should probably be on it's own table to meet normalisation. The `location` attribute should have also been an address referenced in another table.
 
 This is only the MVP, unfortunately I wasn't able to implement all the features I wanted to - review ability, payment and a maps API.
 
