@@ -12,7 +12,7 @@ class WorkshopsController < ApplicationController
   # GET /workshops or /workshops.json
   def index
     # select all workshops
-    @workshops = Workshop.all
+    @workshops = Workshop.all.order(created_at: :desc)
   end
   
   def show
