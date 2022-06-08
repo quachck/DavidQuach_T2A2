@@ -16,7 +16,7 @@ Rank Up is a 2 sided gaming service marketplace app, users who wish to share the
 
 ## Sitemap
 
-![app_ss](docs/sitemap.PNG "app_ss") 
+![sitemap](docs/sitemap.PNG "app_ss") 
 
 ## Screenshots
 
